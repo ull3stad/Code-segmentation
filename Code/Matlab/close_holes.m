@@ -1,0 +1,13 @@
+function imout=close_holes(im)
+% function imout=close_holes(im)
+[f,c]=size(im);
+ mrk=zeros(f,c);
+ mrk(:,1)=255;
+ mrk(:,c)=255;
+ mrk(1,:)=255;
+ mrk(f,:)=255;
+ im=double(im);
+ imc=255-im;
+ mrk=min(mrk,imc);
+ imout=255-(imreconstruct(mrk,imc));
+ imout=uint8(imout);
